@@ -14,13 +14,6 @@ Large Language Models (LLMs) are advanced AI systems trained on vast amounts of 
 - **Transformer Revolution:** Attention mechanism (2017)
 - **Modern LLMs:** GPT, BERT, and beyond (2018-present)
 
-### Key Characteristics
-
-- Billions of parameters
-- Trained on diverse internet text
-- Zero-shot and few-shot learning capabilities
-- Context understanding and generation
-
 ---
 
 ## Chapter 1.2: Core Architecture and Concepts
@@ -53,6 +46,7 @@ The attention mechanism helps models focus on relevant parts of the input:
 - Supervised learning with labeled data
 
 ### Tokenization
+Whether a [transformer AI model](https://blogs.nvidia.com/blog/what-is-a-transformer-model/) is processing text, images, audio clips, videos or another modality, it will translate the data into tokens. This process is known as tokenization.
 
 **What is it?**
 Breaking text into processable units (tokens)

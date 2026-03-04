@@ -27,6 +27,7 @@ function generateHeader() {
 function generateTOC() {
     const toc = document.getElementById('tableOfContents');
     const ul = document.createElement('ul');
+    ul.className = 'nav-main-list';
 
     SITE_CONFIG.sections.forEach((section, index) => {
         const li = document.createElement('li');
@@ -35,8 +36,12 @@ function generateTOC() {
         const headerDiv = document.createElement('div');
         headerDiv.className = 'toc-section-header';
         headerDiv.innerHTML = `
-            <span class="toc-toggle">▼</span>
-            <a href="#${section.id}" class="toc-link">${index + 1}. ${section.title}</a>
+            <div class="nav-item-wrapper">
+                <span class="toc-toggle">🔽</span>
+                <span class="section-number">${index + 1}</span>
+                <a href="#${section.id}" class="toc-link">${section.title}</a>
+                <span class="nav-indicator"></span>
+            </div>
         `;
 
         li.appendChild(headerDiv);
@@ -47,7 +52,12 @@ function generateTOC() {
 
             section.subsections.forEach((sub, subIndex) => {
                 const subLi = document.createElement('li');
-                subLi.innerHTML = `<a href="#${section.id}" class="toc-sublink">${index + 1}.${subIndex + 1} ${sub}</a>`;
+                subLi.innerHTML = `
+                    <div class="nav-subitem-wrapper">
+                        <span class="subsection-dot">•</span>
+                        <a href="#${section.id}" class="toc-sublink">${index + 1}.${subIndex + 1} ${sub}</a>
+                    </div>
+                `;
                 subUl.appendChild(subLi);
             });
 
@@ -190,10 +200,11 @@ function initializeToggles() {
         });
     }, 100);
 
-    // Collapse/Expand All Button — starts as "Expand All" since all are collapsed
+    // Enhanced Collapse/Expand All Button
     const collapseAllBtn = document.getElementById('collapseAllBtn');
+    const navToggleBtn = document.getElementById('navToggleBtn');
     let allCollapsed = true;
-    collapseAllBtn.textContent = 'Expand All';
+    collapseAllBtn.innerHTML = '📋 Expand All';
 
     collapseAllBtn.addEventListener('click', () => {
         const tocItems = document.querySelectorAll('.toc-item');
@@ -201,18 +212,42 @@ function initializeToggles() {
         const wrappers = document.querySelectorAll('.chapter-content');
 
         if (allCollapsed) {
-            tocItems.forEach(item => item.classList.remove('collapsed'));
+            tocItems.forEach(item => {
+                item.classList.remove('collapsed');
+                item.classList.add('expanding');
+                setTimeout(() => item.classList.remove('expanding'), 300);
+            });
             chapters.forEach(h2 => h2.classList.remove('collapsed'));
             wrappers.forEach(w => w.classList.remove('collapsed'));
-            collapseAllBtn.textContent = 'Collapse All';
+            collapseAllBtn.innerHTML = '📁 Collapse All';
         } else {
-            tocItems.forEach(item => item.classList.add('collapsed'));
+            tocItems.forEach(item => {
+                item.classList.add('collapsed');
+                item.classList.add('collapsing');
+                setTimeout(() => item.classList.remove('collapsing'), 300);
+            });
             chapters.forEach(h2 => h2.classList.add('collapsed'));
             wrappers.forEach(w => w.classList.add('collapsed'));
-            collapseAllBtn.textContent = 'Expand All';
+            collapseAllBtn.innerHTML = '📋 Expand All';
         }
 
         allCollapsed = !allCollapsed;
+    });
+
+    // Navigation visibility toggle
+    let navMinimized = false;
+    navToggleBtn.addEventListener('click', () => {
+        const sidebar = document.getElementById('sidebar');
+        if (navMinimized) {
+            sidebar.classList.remove('minimized');
+            navToggleBtn.innerHTML = '☰';
+            navToggleBtn.title = 'Minimize navigation';
+        } else {
+            sidebar.classList.add('minimized');
+            navToggleBtn.innerHTML = '⚏';
+            navToggleBtn.title = 'Expand navigation';
+        }
+        navMinimized = !navMinimized;
     });
 }
 
