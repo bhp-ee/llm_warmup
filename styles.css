@@ -1,0 +1,423 @@
+/* ===================================
+   CSS Reset & Base Styles
+   =================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Scheme */
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --bg-color: #f8f9fa;
+    --sidebar-bg: #34495e;
+    --text-color: #333;
+    --text-light: #666;
+    --border-color: #ddd;
+    --hover-color: #ecf0f1;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Sidebar Width */
+    --sidebar-width: 280px;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow-x: hidden;
+}
+
+/* ===================================
+   Sidebar Navigation
+   =================================== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    color: white;
+    padding: var(--spacing-lg) var(--spacing-sm);
+    overflow-y: auto;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    -webkit-overflow-scrolling: touch;
+}
+
+.sidebar-header {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.toc ul {
+    list-style: none;
+}
+
+.toc li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.toc-link {
+    display: block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.toc-link:hover,
+.toc-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: translateX(4px);
+}
+
+/* ===================================
+   Mobile Menu Toggle
+   =================================== */
+.menu-toggle {
+    position: fixed;
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    z-index: 1100;
+    display: none;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease;
+}
+
+.menu-toggle:hover {
+    background-color: #2980b9;
+}
+
+.menu-toggle:active {
+    transform: scale(0.95);
+}
+
+/* ===================================
+   Main Content Area
+   =================================== */
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    max-width: 900px;
+    min-height: 100vh;
+}
+
+.document-header {
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 3px solid var(--secondary-color);
+}
+
+.document-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-xs);
+}
+
+.last-updated {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* ===================================
+   Content Sections
+   =================================== */
+.content-section {
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.content-section h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.content-section p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.8;
+}
+
+.content-section ul,
+.content-section ol {
+    margin-left: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.content-section li {
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.8;
+}
+
+.content-section strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Images in content */
+.content-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: var(--spacing-md) 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+/* Links in content */
+.content-section a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.content-section a:hover {
+    color: var(--primary-color);
+    border-bottom-color: var(--secondary-color);
+}
+
+.content-section a:visited {
+    color: #5a6c8a;
+}
+
+/* Code blocks */
+.content-section code {
+    background-color: #f4f4f4;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+}
+
+.content-section pre {
+    background-color: #f4f4f4;
+    padding: var(--spacing-md);
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: var(--spacing-md) 0;
+}
+
+.content-section pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* ===================================
+   Loading & Error States
+   =================================== */
+.loading {
+    padding: var(--spacing-lg);
+    text-align: center;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.error {
+    padding: var(--spacing-md);
+    background-color: #fee;
+    color: #c33;
+    border-left: 4px solid #c33;
+    border-radius: 4px;
+}
+
+/* ===================================
+   Footer
+   =================================== */
+.document-footer {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    text-align: center;
+    color: var(--text-light);
+    border-top: 2px solid var(--border-color);
+}
+
+/* ===================================
+   Tablet Styles (iPad, Medium Screens)
+   =================================== */
+@media screen and (max-width: 1024px) {
+    :root {
+        --sidebar-width: 250px;
+    }
+    
+    .main-content {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+    
+    .document-header h1 {
+        font-size: 2rem;
+    }
+    
+    .content-section h2 {
+        font-size: 1.75rem;
+    }
+}
+
+/* ===================================
+   Mobile Styles (Phones, Small Screens)
+   =================================== */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+    
+    .document-header {
+        margin-top: var(--spacing-xl);
+    }
+    
+    .document-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .content-section {
+        padding: var(--spacing-md);
+    }
+    
+    .content-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .content-section h3 {
+        font-size: 1.25rem;
+    }
+}
+
+/* ===================================
+   Small Mobile Optimization
+   =================================== */
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .main-content {
+        padding: var(--spacing-md) var(--spacing-xs);
+    }
+    
+    .document-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .content-section {
+        padding: var(--spacing-sm);
+    }
+}
+
+/* ===================================
+   iOS Specific Optimizations
+   =================================== */
+@supports (-webkit-touch-callout: none) {
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .sidebar {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ===================================
+   Print Styles
+   =================================== */
+@media print {
+    .sidebar,
+    .menu-toggle {
+        display: none;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        max-width: 100%;
+    }
+    
+    .content-section {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid var(--border-color);
+    }
+}
+
+/* ===================================
+   Accessibility & Focus Styles
+   =================================== */
+a:focus,
+button:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+/* ===================================
+   Smooth Scrolling for Section Links
+   =================================== */
+:target {
+    scroll-margin-top: var(--spacing-lg);
+}
