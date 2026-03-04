@@ -96,6 +96,85 @@ body {
     transform: translateX(4px);
 }
 
+/* TOC Toggle Functionality */
+.toc-item {
+    margin-bottom: var(--spacing-sm);
+}
+
+.toc-section-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.toc-section-header:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.toc-toggle {
+    display: inline-block;
+    width: 20px;
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+    user-select: none;
+}
+
+.toc-item.collapsed .toc-toggle {
+    transform: rotate(-90deg);
+}
+
+.toc-subsections {
+    list-style: none;
+    margin-left: var(--spacing-lg);
+    margin-top: var(--spacing-xs);
+    max-height: 500px;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+.toc-item.collapsed .toc-subsections {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+}
+
+.toc-sublink {
+    display: block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.toc-sublink:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: translateX(4px);
+}
+
+.collapse-all-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: var(--spacing-sm);
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.collapse-all-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
 /* ===================================
    Mobile Menu Toggle
    =================================== */
@@ -175,6 +254,40 @@ body {
     margin-bottom: var(--spacing-lg);
     padding-bottom: var(--spacing-sm);
     border-bottom: 2px solid var(--secondary-color);
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.content-section h2:hover {
+    color: var(--secondary-color);
+}
+
+.content-section h2::before {
+    content: '▼';
+    display: inline-block;
+    margin-right: 0.5rem;
+    font-size: 0.8em;
+    transition: transform 0.2s ease;
+    color: var(--secondary-color);
+}
+
+.content-section h2.collapsed::before {
+    transform: rotate(-90deg);
+}
+
+.chapter-content {
+    max-height: 5000px;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+.chapter-content.collapsed {
+    max-height: 0;
+    opacity: 0;
+    margin-bottom: 0;
 }
 
 .content-section h3 {
@@ -221,6 +334,8 @@ body {
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
 }
 
 .content-section a:hover {
@@ -230,6 +345,13 @@ body {
 
 .content-section a:visited {
     color: #5a6c8a;
+}
+
+/* External link icon */
+.external-icon {
+    margin-left: 0.2em;
+    font-size: 0.8em;
+    opacity: 0.6;
 }
 
 /* Code blocks */
@@ -345,8 +467,21 @@ body {
         font-size: 1.5rem;
     }
     
+    .content-section h2::before {
+        font-size: 0.7em;
+    }
+    
     .content-section h3 {
         font-size: 1.25rem;
+    }
+    
+    .toc-subsections {
+        margin-left: var(--spacing-md);
+    }
+    
+    .toc-toggle {
+        width: 18px;
+        font-size: 0.7rem;
     }
 }
 

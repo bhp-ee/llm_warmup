@@ -1,26 +1,40 @@
 # LLM & AI Knowledge Archive
 
-A responsive, markdown-based knowledge documentation system.
+A responsive, markdown-based knowledge documentation system with **auto-generated navigation**.
+
+## ⚡ Quick Start
+
+### Add a New Section (2 Steps!)
+
+1. **Create markdown file:** `content/section-X.md`
+2. **Add to config:** Edit `config.js` - add one object to the array
+3. **Refresh browser** - Done! ✅
 
 ## 📁 Project Structure
 
 ```
 llm_warmup/
-├── index.html              # Main HTML file
+├── config.js              # ⭐ EDIT THIS to add/remove sections
+├── index.html              # Clean, minimal (auto-generates)
+├── script.js               # Handles all auto-generation
 ├── styles.css              # Styling
-├── script.js               # JavaScript functionality
 ├── content/                # Markdown content files
-│   ├── section-1.md       # Fundamentals
-│   ├── section-2.md       # Roadmap
-│   ├── section-3.md       # Technologies
-│   ├── section-4.md       # Advanced Topics
-│   └── section-5.md       # Resources
+│   ├── section-1.md
+│   ├── section-2.md
+│   ├── section-3.md
+│   ├── section-4.md
+│   └── section-5.md
+├── images/                 # Your images
 └── README.md              # This file
 ```
 
 ## ✏️ How to Edit Content
 
+### Option 1: Edit Existing Content
 Simply edit the `.md` files in the `content/` folder using Markdown syntax:
+
+### Option 2: Add New Section
+Edit `config.js`:
 
 ### Basic Markdown Syntax
 
@@ -44,28 +58,26 @@ Simply edit the `.md` files in the `content/` folder using Markdown syntax:
 
 ## ➕ Adding a New Section
 
-1. Create a new `.md` file in the `content/` folder (e.g., `section-6.md`)
-
-2. Write your content in Markdown:
+**Step 1:** Create `content/section-6.md`:
 ```markdown
-# 6. Your New Section
+# 6. Your New Topic
 
-## 6.1 Subsection Title
+## Chapter 6.1: Subtopic
 
-Your content here...
+Content here...
 ```
 
-3. Add the section to `index.html`:
-```html
-<section id="section-6" class="content-section" data-markdown="content/section-6.md">
-    <div class="loading">Loading content...</div>
-</section>
+**Step 2:** Add to `config.js`:
+```javascript
+{
+    id: "section-6",
+    title: "Your New Topic",
+    file: "content/section-6.md",
+    subsections: ["Subtopic"]
+}
 ```
 
-4. Add a link in the Table of Contents (in `index.html`):
-```html
-<li><a href="#section-6" class="toc-link">6. Your New Section</a></li>
-```
+**That's it!** TOC, navigation, and content auto-generate. ✨
 
 ## 🚀 Running the Project
 
@@ -136,6 +148,36 @@ Edit CSS variables in `styles.css`:
 **Styling issues?**
 - Clear browser cache
 - Check styles.css is linked correctly
+
+## ✨ Features
+
+- **Config-Driven**: Edit one file to update everything
+- **Auto-Generated**: TOC and sections create automatically
+- **Collapsible**: Click to collapse/expand chapters and TOC
+- **Responsive**: Works on iOS, Windows, Mac, mobile
+- **Markdown-Based**: Write in simple markdown syntax
+- **Easy Updates**: Add sections in seconds, not minutes
+- **Mobile Menu**: Hamburger menu for small screens
+- **Active Highlighting**: Current section highlighted in TOC
+- **Smooth Scrolling**: Pleasant navigation experience
+
+## 📚 Documentation
+
+- [UPDATE-GUIDE.md](UPDATE-GUIDE.md) - Complete guide to new system
+- [QUICK-REFERENCE.md](QUICK-REFERENCE.md) - Quick reference card
+- [MARKDOWN-GUIDE.md](MARKDOWN-GUIDE.md) - Markdown syntax guide
+- [TOGGLE-GUIDE.md](TOGGLE-GUIDE.md) - Collapse/expand features
+- [DEPLOY-INSTRUCTIONS.md](DEPLOY-INSTRUCTIONS.md) - How to publish
+
+## 🎯 Key Files
+
+| File | Purpose | Edit Frequency |
+|------|---------|----------------|
+| `config.js` | Add/remove sections | Often |
+| `content/*.md` | Write content | Often |
+| `styles.css` | Customize appearance | Sometimes |
+| `index.html` | Structure (rarely change) | Rarely |
+| `script.js` | Functionality (rarely change) | Rarely |
 
 ## 📄 License
 
